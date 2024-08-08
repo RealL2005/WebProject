@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './login.css';
 import * as axios from "axios";
-import * as response from "autoprefixer";
+
+import {useNavigate} from "react-router-dom";
 
 const client = axios.default;
 
@@ -10,6 +11,7 @@ const client = axios.default;
 function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const checkUser = (event) => {
         event.preventDefault();
@@ -24,16 +26,15 @@ function LoginPage() {
                 }
             }
         ).then((response) => {
-            console.log(response.data);
+
+            if (response.data.success) {
+                alert("登录成功！");
+                navigate('/create')
+            } else {
+                alert("登录名或密码错误！");
+            }
         })
-        console.log(response.data.success);
 
-
-        if (response.success) {
-            alert("登录成功！");
-        } else {
-            alert("登录名或密码错误！");
-        }
     }
 
     return (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import {Link, useNavigate} from 'react-router-dom';
 import './register.css';
 import * as axios from "axios";
-import * as response from "autoprefixer";
 
 const client = axios.default;
 
@@ -11,6 +11,7 @@ function RegPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [age, setAge] = useState('');
+    const navigate = useNavigate();
 
     const AddUser = (event) => {
         event.preventDefault();
@@ -28,27 +29,28 @@ function RegPage() {
             }
         ).then((response) => {
             console.log(response.data);
-
-        })
-        if (response.data) {
-            alert("注册成功！");
-            client.post("http://localhost:7001/api/add_user",{
-                    username:username,
-                    password:password,
-                },
-                {
-                    headers:{
-                        "content-type": "application/json"
+            if (response.data.success) {
+                alert("注册成功！");
+                client.post("http://localhost:7001/api/add_user",{
+                        username:username,
+                        password:password,
+                    },
+                    {
+                        headers:{
+                            "content-type": "application/json"
+                        }
                     }
-                }
-            ).then((response) => {
-                console.log(response.data);
-            })
+                ).then((response) => {
+                    console.log(response.data);
+                    navigate('/login');
+                })
 
 
-        } else {
-            alert("请重新注册");
-        }
+            } else {
+                alert("请重新注册");
+            }
+        })
+
     }
 
     return (

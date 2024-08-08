@@ -12,7 +12,7 @@ function App() {
     return (
         <div className="logo">
             <div className="navi">
-                <a href="#"><b>overview</b></a>
+                <Link to="/project"><b>overview</b></Link>
                 <a href="#"><b>help</b></a>
                 <a href="#"><b>contact</b></a>
                 <a href="#"><b>homepage</b></a>

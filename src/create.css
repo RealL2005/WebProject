@@ -122,22 +122,6 @@ button:nth-last-child(1):hover {
     background-color: #f0f0f0;
 }
 
-.draggable-item {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-    transition: background-color 0.2s ease;
-}
 
-.draggable-item:hover {
-    background-color: #f0f0f0;
-}
 
-.draggable-item:active {
-    background-color: #e0e0e0;
-}
+

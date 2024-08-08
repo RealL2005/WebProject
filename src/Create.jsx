@@ -1,91 +1,64 @@
 import React, { useState } from 'react';
 import "./create.css"
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 
 function Create() {
     const [itemList, setItemList] = useState([]);
     const [inputText, setInputText] = useState('');
-    const [isEditing, setIsEditing] = useState(false);
-    const [editIndex, setEditIndex] = useState(null);
+    const [editingIndex, setEditingIndex] = useState(null);
 
-    const handleAddItem = () => {
-        if (inputText.trim()) {
-            setItemList([...itemList, { text: inputText }]);
-            setInputText('');
+    const handleAddOrUpdateItem = () => {
+        if (inputText.trim() === '') return;
+
+        const updatedList = [...itemList];
+
+        if (editingIndex !== null) {
+            updatedList[editingIndex] = inputText; // 更新
+            setEditingIndex(null); // 结束编辑
+        } else {
+            updatedList.push(inputText); // 添加新项
         }
+
+        setItemList(updatedList);
+        setInputText(''); // 重置输入框
     };
 
     const handleEditItem = (index) => {
-        setIsEditing(true);
-        setEditIndex(index);
-        setInputText(itemList[index].text);
-    };
-
-    const handleUpdateItem = () => {
-        const updatedItems = [...itemList];
-        updatedItems[editIndex].text = inputText;
-        setItemList(updatedItems);
-        resetInput();
+        setInputText(itemList[index]);
+        setEditingIndex(index);
     };
 
     const handleDeleteItem = (index) => {
-        const updatedItems = itemList.filter((_, i) => i !== index);
-        setItemList(updatedItems);
-    };
-
-    const resetInput = () => {
-        setInputText('');
-        setIsEditing(false);
-        setEditIndex(null);
-    };
-
-    const onDragEnd = (result) => {
-        if (!result.destination) return;
-
-        const reorderedItems = Array.from(itemList);
-        const [movedItem] = reorderedItems.splice(result.source.index, 1);
-        reorderedItems.splice(result.destination.index, 0, movedItem);
-
-        setItemList(reorderedItems);
+        const updatedList = itemList.filter((_, i) => i !== index);
+        setItemList(updatedList);
     };
 
     return (
-        <div>
-            <input
-                type="text"
-                value={inputText}
-                onChange={(e) => setInputText(e.target.value)}
-                placeholder="添加任务"
-            />
-            <button onClick={isEditing ? handleUpdateItem : handleAddItem}>
-                {isEditing ? '更新' : '添加'}
-            </button>
-            <DragDropContext onDragEnd={onDragEnd}>
-                <Droppable droppableId="droppable">
-                    {(provided) => (
-                        <div {...provided.droppableProps} ref={provided.innerRef}>
-                            {itemList.map((item, index) => (
-                                <Draggable key={item.text} draggableId={item.text} index={index}>
-                                    {(provided) => (
-                                        <div
-                                            ref={provided.innerRef}
-                                            {...provided.draggableProps}
-                                            {...provided.dragHandleProps}
-                                            className="draggable-item"
-                                        >
-                                            <input type="text" readOnly value={item.text} />
-                                            <button onClick={() => handleEditItem(index)}>编辑</button>
-                                            <button onClick={() => handleDeleteItem(index)}>删除</button>
-                                        </div>
-                                    )}
-                                </Draggable>
-                            ))}
-                            {provided.placeholder}
-                        </div>
-                    )}
-                </Droppable>
-            </DragDropContext>
+        <div className="App">
+            <div className="input-area">
+                <input
+                    type="text"
+                    value={inputText}
+                    onChange={(e) => setInputText(e.target.value)}
+                    placeholder="输入内容"
+                />
+                <button onClick={handleAddOrUpdateItem}>
+                    {editingIndex !== null ? '更新' : '添加'}
+                </button>
+                {editingIndex !== null && (
+                    <button onClick={() => setEditingIndex(null)}>取消编辑</button>
+                )}
+            </div>
+            <h3>显示的内容:</h3>
+            <div className="item-list">
+                {itemList.map((item, index) => (
+                    <div key={index} className="item">
+                        <span>{item}</span>
+                        <button onClick={() => handleEditItem(index)}>编辑</button>
+                        <button onClick={() => handleDeleteItem(index)}>删除</button>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
