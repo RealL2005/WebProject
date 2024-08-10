@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    width: 100%;
+    flex-direction: column; /* 使内容以垂直方式排列 */
+}
+
+.left-panel, .center-panel, .right-panel {
+    flex: 1; /* 使每个面板平分空间 */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.left-panel {
+    background-color: #f3f3f3;
+}
+
+.center-panel {
+    background-color: #e3e3e3;
+}
+
+.right-panel {
+    background-color: #d3d3d3;
+}
+
+
+.panel-content {
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f0f0f0; /* 面板背景色 */
+}
+
+.instructions {
+    padding: 20px;
+    text-align: center;
+}
