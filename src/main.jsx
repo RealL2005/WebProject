@@ -8,10 +8,14 @@ import RegPage from "./registerpage.jsx";
 import Create from "./Create.jsx";
 import Project from "./Project.jsx";
 import Task from "./Task.jsx";
+import Contact from "./Contact.jsx";
+import Help from "./Help.jsx";
+import Overview from "./overview.jsx";
+import Homepage from "./homepage.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
+    //<React.StrictMode>
         <Router>
             <Routes>
                 <Route path="/" element={<App />} />
@@ -20,8 +24,12 @@ root.render(
                 <Route path="/create" element={<Create />} />
                 <Route path="/project" element={<Project />} />
                 <Route path="/task" element={<Task />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/help" element={<Help />} />
+                <Route path="/overview" element={<Overview />} />
+                <Route path="/homepage" element={<Homepage />} />
                 {/* 其他路由 */}
             </Routes>
         </Router>
-    </React.StrictMode>
+    //</React.StrictMode>
 );

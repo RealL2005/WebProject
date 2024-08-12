@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './login.css';
 import * as axios from "axios";
 
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const client = axios.default;
 
@@ -29,7 +29,7 @@ function LoginPage() {
 
             if (response.data.success) {
                 alert("登录成功！");
-                navigate('/create')
+                navigate('/homepage')
             } else {
                 alert("登录名或密码错误！");
             }
@@ -38,36 +38,41 @@ function LoginPage() {
     }
 
     return (
-        <div className="login">
-            <h1>Login</h1>
-            <form onSubmit={checkUser}>
-                <label>
-                    <input
-                        type="text"
-                        id="uname"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder="用户名"
-                    /><br/>
-                </label>
-                <label>
-                    <input
-                        type="password"
-                        id="pwd"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="密码"
-                    /><br/>
-                </label>
-                <label>
-                    <input
-                        type="submit"
-                        id="but"
-                        value="登录"
-                    />
-                </label>
-            </form>
-        </div>
+        <>
+            <button className="return-home">
+                <Link to='/register'><b>返回注册页面</b></Link>
+            </button>
+            <div className="login">
+                <h1>Login</h1>
+                <form onSubmit={checkUser}>
+                        <label>
+                            <input
+                                type="text"
+                                id="uname"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                placeholder="用户名"
+                            /><br/>
+                        </label>
+                        <label>
+                            <input
+                                type="password"
+                                id="pwd"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="密码"
+                            /><br/>
+                        </label>
+                        <label>
+                            <input
+                                type="submit"
+                                id="but"
+                                value="登录"
+                            />
+                        </label>
+                    </form>
+                </div>
+            </>
     );
 }
 

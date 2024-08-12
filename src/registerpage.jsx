@@ -54,46 +54,52 @@ function RegPage() {
     }
 
     return (
-        <div className="register">
-            <h1>Register</h1>
-            <form onSubmit={AddUser}>
-                <label>
-                    <input
-                        type="text"
-                        id="uname"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        placeholder="用户名"
-                    /><br/>
-                </label>
-                <label>
-                    <input
-                        type="password"
-                        id="age"
-                        value={age}
-                        onChange={(e) => setAge(e.target.value)}
-                        placeholder="年龄"
-                    /><br/>
-                </label>
-                <label>
-                    <input
-                        type="password"
-                        id="pwd"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="密码"
-                    /><br/>
-                </label>
+        <>
+            <button className="return-home">
+                <Link to='/'><b>返回主页</b></Link>
+            </button>
+            <div className="register">
 
-                <label>
-                    <input
-                        type="submit"
-                        id="but"
-                        value="注册"
-                    />
-                </label>
-            </form>
-        </div>
+                <h1>Register</h1>
+                <form onSubmit={AddUser}>
+                        <label>
+                            <input
+                                type="text"
+                                id="uname"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                placeholder="用户名"
+                            /><br/>
+                        </label>
+                        <label>
+                            <input
+                                type="password"
+                                id="age"
+                                value={age}
+                                onChange={(e) => setAge(e.target.value)}
+                                placeholder="年龄"
+                            /><br/>
+                        </label>
+                        <label>
+                            <input
+                                type="password"
+                                id="pwd"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="密码"
+                            /><br/>
+                        </label>
+
+                        <label>
+                            <input
+                                type="submit"
+                                id="but"
+                                value="注册"
+                            />
+                        </label>
+                </form>
+            </div>
+        </>
     );
 }
 

@@ -83,21 +83,21 @@ input[readonly] {
     color: #6c757d;
 }
 
-button:nth-last-child(2) {
-    background-color: #28a745;
-}
+/*button:nth-last-child(2) {*/
+/*    background-color: #28a745;*/
+/*}*/
 
-button:nth-last-child(2):hover {
-    background-color: #218838;
-}
+/*button:nth-last-child(2):hover {*/
+/*    background-color: #218838;*/
+/*}*/
 
-button:nth-last-child(1) {
-    background-color: #dc3545;
-}
+/*button:nth-last-child(1) {*/
+/*    background-color: #8367fe;*/
+/*}*/
 
-button:nth-last-child(1):hover {
-    background-color: #c82333;
-}
+/*button:nth-last-child(1):hover {*/
+/*    background-color: #c82333;*/
+/*}*/
 
 
 

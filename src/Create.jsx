@@ -65,35 +65,117 @@
 //
 // export default Create;
 
+//
+// import React, { useState, useEffect } from 'react';
+// import "./create.css"
+//
+//
+// function Create() {
+//     const [itemList, setItemList] = useState([]);
+//     const [inputText, setInputText] = useState('');
+//     const [editingIndex, setEditingIndex] = useState(null);
+//     const [showInput, setShowInput] = useState(false);
+//     const input = prompt("Enter title");
+//
+//     // 在组件加载时读取 localStorage
+//
+//     useEffect(() => {
+//
+//         const storedItems = localStorage.getItem(input);
+//         if (storedItems) {
+//             setItemList(JSON.parse(storedItems));
+//         }
+//     }, []);
+//
+//     // 每当 itemList 更新时，保存到 localStorage
+//     useEffect(() => {
+//         if(itemList.length !== 0){
+//             localStorage.setItem(input, JSON.stringify(itemList));
+//         }
+//     }, [itemList]);
+//
+//     const handleAddOrUpdateItem = () => {
+//         const newItem = { text: inputText};
+//         if (editingIndex !== null) {
+//             const updatedItems = itemList.map((item, i) => (i === editingIndex ? newItem : item));
+//             setItemList(updatedItems);
+//             setEditingIndex(null);
+//         } else {
+//             setItemList([...itemList, newItem]);
+//         }
+//         setInputText('');
+//         setShowInput(false);
+//     };
+//
+//     const handleEditItem = (index) => {
+//         setInputText(itemList[index].text);
+//         setEditingIndex(index);
+//         setShowInput(true);
+//     };
+//
+//     const handleDeleteItem = (index) => {
+//         const updatedItems = itemList.filter((_, i) => i !== index);
+//         setItemList(updatedItems);
+//     };
+//
+//     return (
+//         <div className="App">
+//             <button onClick={() => setShowInput(true)}>创建</button>
+//             {showInput && (
+//                 <div className="input-area">
+//                     <input type="text" value={inputText} onChange={(e) => setInputText(e.target.value)} placeholder="输入内容" />
+//                     <button onClick={handleAddOrUpdateItem}>{editingIndex !== null ? '更新' : '添加'}</button>
+//                     {editingIndex !== null && <button onClick={() => setEditingIndex(null)}>取消编辑</button>}
+//                 </div>
+//             )}
+//
+//             <div className="item-list">
+//                 {itemList.map((item, index) => (
+//                     <div key={index} className="item">
+//                         <a rel="noopener noreferrer">{item.text}</a>
+//                         <button onClick={() => handleEditItem(index)}>编辑</button>
+//                         <button onClick={() => handleDeleteItem(index)}>删除</button>
+//                     </div>
+//                 ))}
+//             </div>
+//         </div>
+//     );
+// }
+//
+// export default Create;
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./create.css"
-
 
 function Create() {
     const [itemList, setItemList] = useState([]);
     const [inputText, setInputText] = useState('');
-    const [url, setUrl] = useState('');
     const [editingIndex, setEditingIndex] = useState(null);
     const [showInput, setShowInput] = useState(false);
+    const [title, setTitle] = useState('');
 
-    // 在组件加载时读取 localStorage
+    // 在组件挂载时读取标题
     useEffect(() => {
-        const storedItems = localStorage.getItem('itemList');
-        if (storedItems) {
-            setItemList(JSON.parse(storedItems));
+        let input = prompt("请创建项目名称");
+        if (input) {
+            setTitle(input);
+            const storedItems = localStorage.getItem(input);
+            if (storedItems) {
+                setItemList(JSON.parse(storedItems));
+            }
         }
+
     }, []);
 
     // 每当 itemList 更新时，保存到 localStorage
     useEffect(() => {
-        if(itemList.length !== 0){
-            localStorage.setItem('itemList', JSON.stringify(itemList));
+        if (itemList.length !== 0 && title) {
+            localStorage.setItem(title, JSON.stringify(itemList));
         }
-    }, [itemList]);
+    }, [itemList, title]);
 
     const handleAddOrUpdateItem = () => {
-        const newItem = { text: inputText};
+        const newItem = { text: inputText };
         if (editingIndex !== null) {
             const updatedItems = itemList.map((item, i) => (i === editingIndex ? newItem : item));
             setItemList(updatedItems);

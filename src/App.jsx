@@ -12,14 +12,11 @@ function App() {
     return (
         <div className="logo">
             <div className="navi">
-                <Link to="/project"><b>overview</b></Link>
-                <a href="#"><b>help</b></a>
-                <a href="#"><b>contact</b></a>
-                <a href="#"><b>homepage</b></a>
-
+                <Link to="/overview"><b>overview</b></Link>
+                <Link to="/help"><b>help</b></Link>
+                <Link to="/contact"><b>contact</b></Link>
                 <Link to="/register"><b>注册</b></Link>
                 <Link to="/login"><b>登录</b></Link>
-                <Link to="/create"><b>登录</b></Link>
             </div>
         </div>
     );
