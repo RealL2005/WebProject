@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.left-panel, .center-panel, .right-panel {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.left-panel {
+    background-color: #f3f3f3;
+}
+
+.center-panel {
+    background-color: #e3e3e3;
+}
+
+.right-panel {
+    background-color: #d3d3d3;
+}
+
+
+.panel-content {
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+}
+
+.instructions {
+    padding: 20px;
+    text-align: center;
+}
+
+.tag {
+    display: inline-block;
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 14px;
+    margin-left: 5px;
+    font-weight: 500;
+}

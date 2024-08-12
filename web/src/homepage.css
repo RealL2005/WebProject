@@ -1,0 +1,16 @@
+
+.return-home {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: #1c204a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.return-home:hover {
+    background-color: #0056b3;
+}
